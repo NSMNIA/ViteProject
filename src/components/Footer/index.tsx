@@ -4,7 +4,7 @@ import './footer.scss';
 
 export const Footer = () => {
   return (
-    <section className='rd-footer'>
+    <section className='rd-footer' data-scroll-section>
         <SectionHeader title="Made in"/>
         <h1 className='location'>
             Valkenswaard

@@ -3,7 +3,7 @@ import './header.scss';
 
 export const Header = () => {
   return (
-    <section className="rd-header--container">
+    <section className="rd-header--container" data-scroll-section>
         <ul className="rd-header--menu">
             <li>Intro</li>
             <li>Featured</li>

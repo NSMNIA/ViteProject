@@ -5,7 +5,7 @@ import photos from '../../utils/photos';
 export const Featured = () => {
     const [firstUrl, secondUrl] = photos;
     return (
-        <section className="rd-featured--section">
+        <section className="rd-featured--section" data-scroll-section>
             <div className='rd-featured--row-layout'>
                 <h6>green</h6>
                 <img src={firstUrl}/>

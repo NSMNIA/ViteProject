@@ -63,7 +63,7 @@ function GalleryItem({src, title, subtitle, category, updateActiveImage, index}:
 export const Gallery = () => {
     const [activeImage, setActiveImage] = useState(1);
     return (
-        <section className='rd-section--wrapper rd-gallery--wrap'>
+        <section className='rd-section--wrapper rd-gallery--wrap' data-scroll-section>
             <div className='rd-gallery'>
                 <div className='rd-gallery--counter'>
                     <span>{activeImage}</span>
