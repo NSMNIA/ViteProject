@@ -3,7 +3,12 @@
     grid-template-columns: 1fr 3fr;
     align-items: center;
     img{
-        clip-path: inset(0% 0% 0% 0%);
+        clip-path: inset(100% 0% 0% 0%);
+        transition: clip-path 1s cubic-bezier(.77, 0, .175, 1);
+
+        &.is-reveal{
+            clip-path: inset(0% 0% 0% 0%);
+        }
     }
     h6{
         font-size: 22px;

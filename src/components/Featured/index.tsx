@@ -8,11 +8,11 @@ export const Featured = () => {
         <section className="rd-featured--section" data-scroll-section>
             <div className='rd-featured--row-layout'>
                 <h6>green</h6>
-                <img src={firstUrl}/>
+                <img src={firstUrl} data-scroll/>
             </div>
             <div className='rd-featured--column-layout'>
                 <h6>lily</h6>
-                <img src={secondUrl}/>
+                <img src={secondUrl} data-scroll/>
             </div>
         </section>
     )
