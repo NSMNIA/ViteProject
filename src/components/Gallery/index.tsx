@@ -1,5 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './gallery.scss';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import cn from 'classnames';
+import gsap from 'gsap';
+import useOnScreen from '../../hooks/useOnScreen';
 
 const images = [
     {
@@ -38,8 +42,17 @@ interface IGallery{
 }
 
 function GalleryItem({src, title, subtitle, category, updateActiveImage, index}: IGallery){
+    const ref = useRef(null);
+     const onScreen = useOnScreen(ref, 0.5);
+
+    useEffect(() => {
+        if (onScreen) {
+            updateActiveImage(index);
+        }
+    }, [onScreen, index]);
+
     return (
-        <div className='rd-gallery--item-wrapper'>
+        <div className={cn('rd-gallery--item-wrapper', {'is-reveal': onScreen})} ref={ref}>
             <div/>
             <div className='rd-gallery--item'>
                 <div className="rd-gallery--item-info">
@@ -62,9 +75,34 @@ function GalleryItem({src, title, subtitle, category, updateActiveImage, index}:
 
 export const Gallery = () => {
     const [activeImage, setActiveImage] = useState(1);
+    const ref = useRef<HTMLElement>(null);
+    useEffect(()=>{
+        setTimeout(()=>{
+            const sections = gsap.utils.toArray('.rd-gallery--item-wrapper');
+            gsap.to(sections, {
+                xPercent: -100 * (sections.length - 1),
+                ease: 'none',
+                scrollTrigger: {
+                    start: "top top",
+                    trigger: ref.current,
+                    scroller: ".rd-main--container",
+                    pin: true,
+                    scrub: 0.5,
+                    snap: 1 / (sections.length - 1),
+                    end: () => `+=${ref.current.offsetWidth}`,
+                },
+            });
+            ScrollTrigger.refresh();
+        });
+    },[])
+
+    const handleUpdateActiveImage = (index: number) => {
+        setActiveImage(index + 1);
+    };
+
     return (
         <section className='rd-section--wrapper rd-gallery--wrap' data-scroll-section>
-            <div className='rd-gallery'>
+            <div className='rd-gallery' ref={ref}>
                 <div className='rd-gallery--counter'>
                     <span>{activeImage}</span>
                     <span className='divider'></span>
@@ -79,7 +117,7 @@ export const Gallery = () => {
                             subtitle={image.subtitle}
                             category={image.category}
                             title={image.title}
-                            updateActiveImage={(index: number) => setActiveImage(index+1)}
+                            updateActiveImage={handleUpdateActiveImage}
                         />
                     )
                 })}
