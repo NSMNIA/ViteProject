@@ -1,0 +1,23 @@
+.rd-header--container{
+    position: relative;
+    .rd-header--menu{
+        position: absolute;
+        left: 0;
+        top: 100px;
+        letter-spacing: 1px;
+        font-family: 'Syncopate', sans-serif;
+        color: #625262;
+        text-transform: uppercase;
+        li{
+            margin: 10px 0;
+        }
+    }
+
+    #rd-header--text{
+        font-size: 20vw;
+        text-transform: uppercase;
+        text-align: center;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-weight: 600;
+    }
+}

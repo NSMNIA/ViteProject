@@ -1,13 +1,18 @@
 import { useState } from 'react'
+import { Header } from './components/Header'
 import { Navbar } from './components/Navbar'
-import logo from './logo.svg'
+import { CustomCursor } from './CustomCursor'
 import './styles/global.scss'
 
 function App() {
 
   return (
     <>
+    <CustomCursor/>
+    <main className='rd-main--container'>
       <Navbar/>
+      <Header/>
+    </main>
     </>
   )
 }
